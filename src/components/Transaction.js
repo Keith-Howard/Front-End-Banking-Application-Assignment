@@ -26,11 +26,14 @@ function Transaction(props) {
         
 
         function getNewBalance(enteredAmount) {
+            console.log('transaction initial balance ' + Number(ctx.users[currentUserCtx.index].balance));
+            console.log('transaction entered amount ' + Number(enteredAmount));
             if (props.transactionType === 'DEPOSIT') {
-                ctx.users[currentUserCtx.index].balance = Number(ctx.users[currentUserCtx.index].balance) + Number(enteredAmount);
+                ctx.users[currentUserCtx.index].balance = (Number(ctx.users[currentUserCtx.index].balance) + Number(enteredAmount)).toFixed(2);
             } else {
-                ctx.users[currentUserCtx.index].balance = Number(ctx.users[currentUserCtx.index].balance) - Number(enteredAmount);
+                ctx.users[currentUserCtx.index].balance = (Number(ctx.users[currentUserCtx.index].balance) - Number(enteredAmount)).toFixed(2);
             }
+            console.log('transaction new balance ' + ctx.users[currentUserCtx.index].balance);
         }
 
         function makeTransaction(event) {
@@ -63,12 +66,12 @@ function Transaction(props) {
                     <br/>
                         <div >
                             <label htmlFor="balance"><h2 style={{fontSize: '3.25em', alignItems: 'left !important'}}>BALANCE</h2></label>
-                            <input id="balance" style={{maxWidth: "250px", fontSize: '3.50em', height: '58px', justifyItems: 'right', textAlign: 'right'}} readOnly 
+                            <input id="balance" style={{maxWidth: "250px", fontSize: '2.50em', height: '58px', justifyItems: 'right', textAlign: 'right'}} readOnly 
                             value={ctx.users[currentUserCtx.index].balance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} className="form-control float-right bg-info border-info text-white"/>
                         </div>
                     <br/>
                     <br/><h2 style={{fontSize: '3em', justifyContent: 'left'}}>{props.transactionType} AMOUNT</h2>
-                    <br/><input style={{maxWidth: '100%',height: '75px', fontSize: '3.25em', margin: 'auto', textAlign: "right"}} type="input" className="form-control" id={props.transactionType}
+                    <br/><input style={{maxWidth: '100%',height: '75px', fontSize: '2.50em', margin: 'auto', textAlign: "right"}} type="input" className="form-control" id={props.transactionType}
                     onChange={e => setAmount(e.currentTarget.value)} />
                     <br/>
                     <div style={{display: 'flex', justifyContent: 'center'}}>
