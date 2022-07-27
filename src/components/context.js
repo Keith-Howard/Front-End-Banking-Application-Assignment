@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-const UserContext = React.createContext(null);
+const UserContext = React.createContext({users:[]});
 const currentUserContext = React.createContext({name: '', email: '', password: '', balance: 0, index: 0, loginStatus: false});
 
 function CardBootstrap(props) {

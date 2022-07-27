@@ -17,6 +17,7 @@ function CreateAccount() {
         return true;
     }
     function emailExists() {
+        if (Object.keys(ctx.users).length === 0) return false;
         for (const user of ctx.users) {
             if (user.email === email) {
                 alert('Email Already Exists');
@@ -80,11 +81,11 @@ function CreateAccount() {
                 <br/><input style={{maxWidth: '300px', margin: 'auto'}} type="password" className="form-control" id="password"
                 placeholder="PASSWORD" value={password} onChange={e => {setPassword(e.currentTarget.value)}} />
                 <br/><button id='submitButton' type="submit" className="btn btn-light" onClick=
-                {handleCreate} disabled={password === ''}>Create<br/>Account</button>
+                {handleCreate} disabled={password === ''}>Create</button>
                 </>
             ):(
                 <>
-                <h5>Success, {name}'s Account Was Created</h5>
+                <h5>Success {name}'s Account Created</h5>
                 <button type="submit" className="btn btn-light" onClick=
                 {clearForm}>Add another account</button>
                 </>
